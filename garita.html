@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mostrar Imagen</title>
+    <title>Imagen desde Parámetro</title>
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
         }
         img {
             max-width: 100%;
@@ -19,29 +17,26 @@
     </style>
 </head>
 <body>
-    <div id="image-container">
-        <!-- La imagen se cargará aquí -->
-    </div>
+    <h1>Imagen desde Parámetro</h1>
+    <p id="imageUrl">Cargando URL...</p>
+    <img id="image" src="" alt="Imagen desde URL">
 
     <script>
-        // Obtener el parámetro 'url' de la URL
-        function getParameterByName(name) {
+        // Función para obtener el parámetro de la URL
+        function getQueryParameter(name) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(name);
         }
 
-        // Obtener la URL de la imagen desde el parámetro
-        const imageUrl = getParameterByName('url');
-
-        // Verificar si se ha proporcionado una URL
+        // Obtener la URL de la imagen del parámetro
+        const imageUrl = getQueryParameter('url');
+        
+        // Mostrar la URL en el texto y establecer la fuente de la imagen
         if (imageUrl) {
-            const imageContainer = document.getElementById('image-container');
-            const imgElement = document.createElement('img');
-            imgElement.src = imageUrl;
-            imgElement.alt = 'Imagen proporcionada por URL';
-            imageContainer.appendChild(imgElement);
+            document.getElementById('imageUrl').textContent = 'URL de la imagen: ' + imageUrl;
+            document.getElementById('image').src = imageUrl;
         } else {
-            document.getElementById('image-container').innerText = 'No se proporcionó ninguna URL de imagen.';
+            document.getElementById('imageUrl').textContent = 'No se proporcionó ninguna URL.';
         }
     </script>
 </body>
