@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostrar Imagen</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="image-container">
+        <!-- La imagen se cargará aquí -->
+    </div>
+
+    <script>
+        // Obtener el parámetro 'url' de la URL
+        function getParameterByName(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Obtener la URL de la imagen desde el parámetro
+        const imageUrl = getParameterByName('url');
+
+        // Verificar si se ha proporcionado una URL
+        if (imageUrl) {
+            const imageContainer = document.getElementById('image-container');
+            const imgElement = document.createElement('img');
+            imgElement.src = imageUrl;
+            imgElement.alt = 'Imagen proporcionada por URL';
+            imageContainer.appendChild(imgElement);
+        } else {
+            document.getElementById('image-container').innerText = 'No se proporcionó ninguna URL de imagen.';
+        }
+    </script>
+</body>
+</html>
